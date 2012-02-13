@@ -1,0 +1,55 @@
+* RAID, Redundant Array of Independent Disks, use a collection of hard drives to increase data reliability, and improve the performance. 
+* Different RAID levels have different performance and reliability. 
+* JBOD:
+  >> Just a Bunch Of Drives.
+  >> Mostly all the physical disks are just concatenated and presented as a single disk.
+
+* RAID 0:
+  >> no redundancy.
+  >> data will broken into fragments called blocks, the number of blocks is dictated by the stripe size.
+  >> stripe size is how many drives consist of.
+  >> The blocks are written to their respective drives simultaneously on the same sector.
+  >> Size = N X min(S1, S2,...Sn)
+  
+* RAID 1:
+  >> mirroring.
+  >> data is written identically to multiple drives, thereby producing a "mirrored set".
+  >> at least 2 drives are required.
+  >> The array continues to operate as long as at least one drive is functioning.
+  >> write performance may be reduce.
+  >> Size = min(S1, S2,...Sn)
+  
+* RAID 2:
+  >> Bit-level striping.
+  >> Expensive parity cost.
+  >> Use Hamming-code to process data before wrtie.
+  >> at least 3 drives are required.(depend on Hamming-code level)
+  
+* RAID 3:
+  >> byte-level stripe.
+  >> Use XOR to replace Hamming ECC, it's a easier way to generate parity, make performance better than RAID 2.
+  >> Performance is slower for random, small I/O operations, because RAID 3 need to refer every disk on each read/write.
+
+* RAID 4:
+  >> block-level stripe.
+  >> Most same as RAID 3, but in block level.
+  >> random, small I/O operations still poor, but better than RAID 3.
+
+* RAID 5:
+  >> block-level striping with distributed parity.
+  >> block-level Stripe.
+  >> parity write to distributed disk everytime.
+  >> only 1 extra disk is required.
+  >> random, small I/O operations still poor, but better than RAID 3/4.
+  >> Good aggregate transfer rate.
+  
+* RAID 6:
+  >> block-level striping with double distributed parity.
+  >> provides fault tolerance of two drive failures, because 
+  >> Controller overhead to compute parity addresses is extremely high
+  >> random, small I/O operations still poor, but better than RAID 3/4.
+
+* Read-modify-write: 
+  >> RAID 5, 6 need to read all blocks of data when every write, it will encounter Read-modify-write situation, it could be a performance issue.
+  
+

@@ -1,0 +1,87 @@
+1. SAM: SCSI Architecture Model
+    * A client-server transaction is represented as a procedure call with inputs supplied by the caller (the client). The procedure call is processed by the server and returns outputs and a procedure call status.
+    * An application client is independent of the interconnect and SCSI transport protocol.
+    * Between client and server, Device service requests are used to request the processing of commands and task manager requests are used to request the processing of task management functions.
+    * The sequence in which requests are received is often important.
+    * Each instance of a SCSI Domain class shall contain the following objects:
+        a) one service delivery subsystem;
+        b) one or more SCSI devices; 
+        c) one or more SCSI ports.
+    * The Service Delivery Subsystem class (see figure 13) connects all the SCSI ports (see 3.1.101) in the SCSI domain.
+    * LUN structure.
+	
+2. SCSI Command Set
+    2.1 Command procedure call format:
+    >> Service Response = Execute Command (IN ( I_T_L_Q Nexus, CDB, Task Attribute, [Data-In Buffer Size], [Data-Out Buffer], [Data-Out Buffer Size], [CRN], [Command Priority]), OUT ( [Data-In Buffer], [Sense Data], [Sense Data Length],Status, [Status Qualifier] ))
+	2.2 CBD (Command descriptor block): The CDB defines the operation to be performed by the device server.
+	2.3 Status: Status(Status code/qualifier/precedence) shall be sent from the device server to the application client whenever a command completes with a service response of COMMAND COMPLETE.
+	2.4 Command Set hierarchy
+    >> SPC: SCSI PRIMARY COMMANDS
+        >> SBC: SCSI BLOCKS COMMANDS
+        >> SES: SCSI ENCLOSURE SERVICES COMMANDS
+        >> RBC: REDUCE BLOCK COMMANDS
+        >> SSC: SCSI STREAM COMMANDS
+        >> SMC: SCSI MEDIA CHANGER COMMANDS
+        >> MMC: MUTIL-MEDIA COMMANDS
+        >> SCC: SCSI CONTROLER COMMANDS
+        >> OSD: OBJECT-BASED STORAGE DEVICE
+        >> ADC: AUTOMATION INTERFACE COMMANDS
+		
+3. Communication protocol
+    3.1 Fiber channel:
+	>> Fibre Channel topologies:
+		* Point-to-Point (FC-P2P): Two devices are connected directly to each other. This is the simplest topology, with limited connectivity.
+		* Arbitrated loop (FC-AL): In this design, all devices are in a loop or ring, similar to token ring networking. Adding or removing a device from the loop causes all activity on the loop to be interrupted.
+		* Switched fabric (FC-SW): All devices or loops of devices are connected to Fibre Channel switches, similar conceptually to modern Ethernet implementations.
+		
+	>> Fibre Channel Layers:
+		* FC4 ¡X Protocol Mapping layer, in which application protocols, such as SCSI or IP, are encapsulated into a PDU for delivery to FC2.
+		* FC3 ¡X Common Services layer, a thin layer that could eventually implement functions like encryption or RAID redundancy algorithms;
+		* FC2 ¡X Network layer, defined by the FC-PI-2 standard, consists of the core of Fibre Channel, and defines the main protocols;
+		* FC1 ¡X Data Link layer, which implements line coding of signals;
+		* FC0 ¡X PHY, includes cabling, connectors etc..
+
+    3.2 SAS:
+		* SATA 3 Gbit/s drives may be connected to SAS backplanes, but SAS drives may not be connected to SATA backplanes.
+		* Basic components of a SAS system:
+		  >> An Initiator: a device that originates device-service and task-management requests for processing by a target device and receives responses for the same requests from other target devices. Initiators may be provided as an on-board component on the motherboard or as an add-on host bus adapter.
+		  >> A Target: a device containing logical units and target ports that receives device service and task management requests for processing and sends responses for the same requests to initiator devices. A target device could be a hard disk or a disk array system.
+		  >> A Service Delivery Subsystem: the part of an I/O system that transmits information between an initiator and a target.
+			 >> cables connecting.
+			 >> An Initiator.
+			 >> A Target.
+			 >> (expanders and backplanes)
+		  >> Expanders: 
+		* SAS differ from Fibre Channel:
+		  >> Reduce the switching mechanism to increase performance.
+		  >> Add phy units to increase flexibility. 
+    3.3 iSCSI:
+		* One kind of SAN.
+		* iSCSI is a IP-based storage networking standard
+		* By carrying SCSI commands over IP networks, iSCSI is used to facilitate data transfers over intranets and to manage storage over long distances.
+		* The protocol allows clients (called initiators) to send SCSI commands (CDBs) to SCSI storage devices (targets) on remote servers. 
+		* Unlike traditional Fibre Channel, which requires special-purpose cabling, iSCSI can be run over long distances using existing network infrastructure(more economical).
+		* Components of iSCSI:
+		  >> Initiator:
+		     >> Software initiator: Only use the exist LAN and CPU resource, cheap and poor performance.
+			 >> TOE NIC: Use TOE NIC to offload CPU resource in TCP/IP packages.
+			 >> iSCSI HBA(iSCSI PDU + TOE): Single purpose(only for iSCSI), but good performance.
+		  >>Target(Common deployment scenarios):
+		     >> Storage array.
+			 >> Software target: operating systems/supplemental software provided iSCSI target.
+			 >> Logical Unit Number.
+			 
+4. SATA
+	* SATA uses a point-to-point architecture.
+	4.1 Advanced Host Controller Interface (AHCI):
+		* (AHCI)is an open host controller interface published and used by Intel, which has become a de facto standard.
+	4.2 Layers:
+		* Physical 
+		* Link
+		* Transport.
+		
+* http://en.wikipedia.org/wiki/Serial_attached_SCSI
+* http://wangyuep.itpub.net/post/8922/68693
+* http://book.51cto.com/art/201001/179205.htm
+* http://en.wikipedia.org/wiki/ISCSI
+* en.wikipedia.org/wiki/Serial_ATA

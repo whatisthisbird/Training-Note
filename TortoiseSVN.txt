@@ -1,0 +1,95 @@
+1. Install TortoiseSVN.
+   >> Download from: http://tortoisesvn.net/downloads.html
+   >> Install it.
+
+2. Create a SVN repository. 
+
+3. SVN Checkout.
+   * Create a working directory
+   * Like "git init"
+
+4. SVN Update
+   * Update to date from repository.
+
+5. TortoiseSVN Menu
+   5.1.1 Show log
+   * Show revision log, for whole working directory, 
+   * or for each file(click right button on sigle file). 
+   5.1.2 Diff with previous version.
+   * When you click right button on sigle file, you can see this option.
+   * Show the differential between previous version.
+   ---
+   5.2 Repo-browser
+   * A repository browser.
+   * You can browse repository before you checkout.
+   
+   5.3 Check for modifications
+   * Show those file modified but not commit.
+   * Click file to see differential of this modification between last commit.
+   * Just like click single file and select "diff".
+   * Like "git diff"
+   
+   5.4 Revision graph
+   * Show revision graph.
+   
+   ---
+   5.5 Resolved... 
+   * Click it after conflict resolved.
+   * Or SVN will not allow you commit.
+   5.6 Update to revision...
+   * Update code to revision that you want.
+   
+   5.7 Revert...
+   * Revert the modification before commit it.
+   
+   5.8 Clean up...
+   5.8.1 Clean up working copy status: Clean up inconsistent state, doesn't affect any data.
+   5.8.2 Revert all changes recursively: Most likely Revert command.
+   5.8.3 Delete unversioned files and folders, Delete ignored files and folders: This is a fast and easy way to remove all generated files in your working copy. All files and folders that are not versioned are moved to the trash bin. 
+   5.8.4 Refresh shell overlays:
+ 
+   5.9 Get lock...
+   * Lock files.
+   5.10 Release lock...
+    * Unlock files.
+   ----
+   5.11 Branch/tag... 
+   * Make a branch.
+   * Make a tag.
+
+   5.12 Switch...
+   * Switch to other branchs.
+   
+   5.13 Merge...
+   5.13.1 
+   * Merge the trunk modification in branch, it can make the branch sync with trunk. 
+   * You need to do this action in branch.
+   5.13.2 
+   * Merge branch back to trunk, when the branch complete.
+   * You need to do this action in trunk.
+   
+   5.14 Export...
+   * Export commit with svn file(.svn directory).
+   
+   5.15 Relocate...
+   * Relocate your working directory.
+   
+   ----
+   5.16 Add...
+   * Add files to under SVN control.
+   
+   5.17 Unversion and add to ignore list
+   * Make files or directories to ignore list(I.E. not monitor it anymore).
+   ----
+   5.18 Create patch... 
+   * Create patch file.
+   
+   5.19 Apply patch...
+   * Apply patch file.
+   
+   5.20 Properties
+   
+   ----
+   5.21 Settings
+   5.22 Help
+   5.23 About
